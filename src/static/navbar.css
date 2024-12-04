@@ -1,0 +1,247 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: 80px; /* Start with collapsed width */
+  height: 100%;
+  background: linear-gradient(45deg, #E3E4E4, #CFCFCF);
+  position: fixed;
+  transition: width 0.5s ease, background 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  top: 60px;
+  overflow: hidden; /* Prevent overflow of content when collapsed */
+}
+
+.sidebar-header {
+  padding: 0 20px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  height: 0px;
+}
+
+.brand {
+  font-size: 1.6rem;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.brand i {
+  margin-right: 10px;
+  font-size: 28px;
+}
+
+.nav-links {
+  list-style-type: none;
+  padding: 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.3s ease, padding-left 0.3s ease;
+  position: relative;
+  color: black;
+}
+
+.nav-icon {
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  display: inline-block;
+  margin-right: 10px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  color: black;
+}
+
+.nav-item:hover {
+  background: #B71C1C;
+}
+
+.nav-item:hover i {
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-1px); }
+  50% { transform: translateX(1px); }
+  75% { transform: translateX(-1px); }
+}
+
+/* Sidebar hover to expand */
+.sidebar:hover {
+  width: 250px; /* Expand to full width when hovered */
+}
+
+.sidebar .nav-item span:not(.nav-icon) {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .nav-item span:not(.nav-icon) {
+  opacity: 1; /* Show text when sidebar is expanded */
+}
+
+/* Sidebar collapse styles */
+.sidebar.collapsed {
+  width: 80px;
+  background: linear-gradient(45deg, #E3E4E4, #CFCFCF);
+}
+
+.sidebar.collapsed .nav-item span {
+  display: none;
+}
+
+.sidebar.collapsed .nav-item .nav-icon {
+  display: block;
+  color: black; /* Change icon color to black when collapsed */
+}
+
+.sidebar.collapsed .sidebar-header h3 {
+  justify-content: center;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 40px;
+  width: calc(100% - 250px);
+  transition: margin-left 0.5s ease;
+  background: #f3f4f6;
+}
+
+.sidebar.collapsed ~ .main-content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.toggle-btn {
+  width: 35px;
+  height: 35px;
+  background: #B71C1C;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 45vh;
+  border-radius: 50%;
+}
+
+.toggle-btn .toggle-icon {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Smooth Hover Animation */
+.nav-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: #B71C1C;
+  transition: transform 0.2s ease;
+  transform: scaleY(0);
+  transform-origin: bottom;
+}
+
+.nav-item:hover::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+/* Navbar Styling */
+nav {
+  width: 100vw;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #B71C1C;
+}
+
+nav .brand {
+  color: #f3f4f6;
+}
+
+li {
+  margin: 0px 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+ul li a span {
+  color: #2e2e2e;
+}
+
+ul li:hover a span {
+  color: #f3f4f6;
+}
+
+nav {
+  width: 100vw;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 2rem;
+}
+
+nav .image img {
+  width: auto;
+  height: 50px;
+}
+
+nav button {
+  background-color: transparent;
+  padding: 20px;
+  border: none;
+  outline: none;
+  color: #f3f4f6;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+nav .group {
+  display: flex;
+  gap: 20px;
+}
+
+nav .group .user_details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav .group .user_details p {
+  color: #f3f4f6;
+  line-height: 60px;
+  font-size: 1rem;
+}
+
+nav button:hover {
+  background-color: transparent;
+}

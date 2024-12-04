@@ -1,0 +1,327 @@
+/* complaints.css */
+.complaint-details {
+    width: 100%;
+    max-width: 900px;
+    /* Limit the width of the table */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Soft shadow effect */
+    overflow: hidden;
+}
+
+.complaint-details h1 {
+    font-size: 2rem;
+    color: #2C3E50;
+    /* Dark blue color for heading */
+    margin-bottom: 20px;
+    border-bottom: 2px solid #BDC3C7;
+    /* Subtle underline for the heading */
+    padding-bottom: 10px;
+}
+
+.complaint-details .complaint-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.complaint-details .complaint-table th,
+.complaint-details .complaint-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #BDC3C7;
+    /* Border between rows */
+}
+
+.complaint-details .complaint-table th {
+    background-color: #ECF0F1;
+    /* Light gray background for headers */
+    color: #7F8C8D;
+    /* Light gray color for header text */
+    font-weight: bold;
+}
+
+.complaint-details .complaint-table td {
+    background-color: #fff;
+    color: #34495E;
+    /* Dark text for values */
+    font-size: 1rem;
+}
+
+.complaint-details .complaint-table tr:nth-child(even) td {
+    background-color: #F9F9F9;
+    /* Subtle background for even rows */
+}
+
+.complaint-details .complaint-table td strong {
+    font-weight: bold;
+    color: #2C3E50;
+    /* Dark color for labels */
+}
+
+/* Supporting documents and feedbacks section */
+.complaint-details .supporting-documents,
+.complaint-details .feedbacks {
+    margin-top: 20px;
+}
+
+.complaint-details .supporting-documents ul,
+.complaint-details .feedbacks ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.complaint-details .supporting-documents li,
+.complaint-details .feedbacks li {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* Loading, error, and no data styles */
+.complaint-details .loading,
+.complaint-details .error {
+    font-size: 1.2rem;
+    color: #E74C3C;
+    /* Red for error/loading */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .complaint-details {
+        padding: 15px;
+    }
+
+    .complaint-details h1 {
+        font-size: 1.5rem;
+    }
+
+    .complaint-details .complaint-table th,
+    .complaint-details .complaint-table td {
+        padding: 10px;
+    }
+
+    .complaint-details .complaint-table td {
+        font-size: 0.9rem;
+    }
+}
+
+.feedbacks ul {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0px;
+}
+
+.feedbacks ul li {
+    width: 100%;
+    background-color: #ECF0F1;
+    padding: 10px 16px;
+    margin: 0;
+}
+
+/* Styling for the Wallet Address display */
+.blockchain_account {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f2f2f2;
+    margin: 10px 0;
+    border-radius: 8px;
+    color: #333;
+    display: inline-block;
+    max-width: 500px;
+    word-wrap: break-word;
+}
+
+/* Styling for the Connect Wallet button */
+.connect-wallet-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #B71C1C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    text-align: center;
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.blockchain_account {
+    position: absolute;
+    top: 0px;
+    right: 8rem;
+}
+
+.blockchain_account .address span {
+    color: #B71C1C;
+    text-transform: uppercase;
+}
+
+.feedbacks strong {
+    color: #B71C1C;
+}
+
+.feedbacks .feedback_form {
+    height: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 10px;
+}
+
+.feedback_form .formgroup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+.formgroup input {
+    height: 100%;
+    border-radius: 5px;
+}
+
+.feedbacks .feedback_form .formgroup .submit_btn {
+    height: 100%;
+    background-color: #B71C1C;
+    color: #ECF0F1;
+    border: none;
+    outline: none;
+    padding: 0px 10px;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.feedbacks .feedback_form .formgroup .submit_btn:hover {
+    background-color: #b71c1ce0;
+}
+
+.feedbacks ul li .user {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 2rem;
+    font-weight: 600;
+}
+
+.feedbacks ul li .user span {
+    font-size: 2rem;
+    color: #B71C1C;
+    margin-right: 6px;
+}
+
+.feedbacks ul li .date {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 12px;
+}
+
+.feedbacks ul li .feedback {
+    padding: 10px 2rem 10px 2.2rem;
+}
+
+/* Forwards */
+/* General form styling */
+.forward_form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling for form groups */
+  .formgroup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Checkbox styling */
+  #forward {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+  
+  /* Label styling */
+  label {
+    font-size: 16px;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  /* Forward user input and button styling */
+  .forward_user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  #forwardUserId {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+  }
+  
+  #forwardUserId:focus {
+    border-color: #B71C1C;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button styling */
+  .submit_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #B71C1C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit_btn:hover {
+    background-color: #b71c1cce;
+  }
+
+  input[type="text"] {
+    margin-top: 20px;
+  }
