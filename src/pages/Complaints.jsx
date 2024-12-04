@@ -36,11 +36,12 @@ const ComplaintList = () => {
       float: "right",
     }}>
       <div className="blockchain_account">
-        <p className="address"><span>Address:</span> {WalletAddress}</p>
+        <p className="address"><span>Address:</span> {`${WalletAddress.slice(0, 7)}...${WalletAddress.slice(-5)}`}</p>
       </div>
       <div className="complaint-cards">
         {complaints.map((complaint) => (
           <div className="complaint-card" key={complaint._id}>
+            <p className="status" style={{ color: (complaint.status == "accepted") ? "#00b400" : "#b40000" }}>[{complaint.status}]</p>
             <h3>{complaint.category}</h3>
             <p><strong>Type:</strong> {complaint.type}</p>
             <p><strong>Description:</strong> {complaint.description}</p>

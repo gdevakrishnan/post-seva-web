@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../static/complaints.css";
-import { createFeedback, fetchComplaintById, trackingComplaint } from "../services/serviceWorker";
+import { createFeedback, fetchComplaintById, trackingComplaint, updateStatus } from "../services/serviceWorker";
 import appContext from "../context/appContext";
 import { IoSend } from "react-icons/io5";
 import { HiUserCircle } from "react-icons/hi2";
+import { IoCaretBackOutline } from "react-icons/io5";
 
 function ComplaintDetails() {
     const { id } = useParams();
@@ -12,6 +13,7 @@ function ComplaintDetails() {
     const [complaint, setComplaint] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const nav = useNavigate();
 
     const { sidebarIsCollapse, userDetails } = useContext(appContext);
     const { userId } = userDetails;
@@ -88,6 +90,56 @@ function ComplaintDetails() {
             .catch((e) => console.log(e.message));
     }
 
+    // Actions
+    const handleAccept = async (e) => {
+        e.preventDefault();
+        const statusData = {
+            "complaintId": id,
+            "status": "accepted"
+        }
+        await updateStatus(statusData)
+            .then((response) => {
+                if (response.status == 200) {
+                    alert(response.data.message);
+                    loadComplaint();
+                }
+            })
+            .catch((e) => console.log(e.message));
+    }
+
+    const handleDecline = async (e) => {
+        e.preventDefault();
+        const statusData = {
+            "complaintId": id,
+            "status": "rejected"
+        }
+        await updateStatus(statusData)
+            .then((response) => {
+                if (response.status == 200) {
+                    alert(response.data.message);
+                    loadComplaint();
+                }
+            })
+            .catch((e) => console.log(e.message));
+    }
+
+    const handleSolved = async (e) => {
+        e.preventDefault();
+        const statusData = {
+            "complaintId": id,
+            "status": "closed"
+        }
+        await updateStatus(statusData)
+            .then((response) => {
+                if (response.status == 200) {
+                    alert(response.data.message);
+                    loadComplaint();
+                }
+            })
+            .catch((e) => console.log(e.message));
+    }
+
+    // Load Complaint
     const loadComplaint = async () => {
         try {
             await fetchComplaintById({ complaintId: id })
@@ -121,6 +173,33 @@ function ComplaintDetails() {
                 float: "right",
             }}
         >
+            <div className="buttons">
+                <div className="actions">
+                    <button className="btn back" onClick={(e) => {
+                        e.preventDefault();
+                        nav('/complaints');
+                    }}>
+                        <IoCaretBackOutline /> Back
+                    </button>
+                </div>
+
+                <div className="actions">
+                    {
+                        (complaint.status == "accepted") ? (
+                            <button className="btn solved accept"
+                                onClick={(e) => handleSolved(e)}
+                            >Resolved</button>
+                        ) : (
+                            <button className="btn accept"
+                                onClick={(e) => handleAccept(e)}
+                            >Accept</button>
+                        )
+                    }
+                    <button className="btn decline"
+                        onClick={(e) => handleDecline(e)}
+                    >Decline</button>
+                </div>
+            </div>
             <div className="complaint-details">
                 <h1>Complaint Details</h1>
 
@@ -156,7 +235,7 @@ function ComplaintDetails() {
                         </tr>
                         <tr>
                             <th>Status</th>
-                            <td>{complaint.status}</td>
+                            <td className="status" style={{ color: (complaint.status == "accepted" || complaint.status == "closed") ? "#00b400" : "#b40000" }}>[{(complaint.status == "closed") ? "solved" : complaint.status}]</td>
                         </tr>
                         <tr>
                             <th>Created At</th>
@@ -211,6 +290,7 @@ function ComplaintDetails() {
                     </div>
                 )} */}
 
+                {/* Forward */}
                 <form className="forward_form">
                     <div className="formgroup">
                         <input

@@ -69,11 +69,18 @@ export const createFeedback = async (feedback) => {
 // Tracking Complaint
 export const trackingComplaint = async (forwardData) => {    
     try {
-        console.log(forwardData);
-        
         const response = await Axios.post(`${BASE_URL}/user/complaint-tracking`, forwardData);
-        console.log(response);
-        
+        return response;
+    } catch (error) {
+        console.error("Error fetching complaint by ID:", error);
+        throw error;
+    }
+};
+
+// Update status of the complaint
+export const updateStatus = async (statusData) => {    
+    try {
+        const response = await Axios.put(`${BASE_URL}/user/update-status`, statusData);
         return response;
     } catch (error) {
         console.error("Error fetching complaint by ID:", error);
