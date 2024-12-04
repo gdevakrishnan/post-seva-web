@@ -185,7 +185,7 @@ function ComplaintDetails() {
 
                 <div className="actions">
                     {
-                        (complaint.status == "accepted") ? (
+                        (complaint.status == "accepted" || complaint.status == "closed") ? (
                             <button className="btn solved accept"
                                 onClick={(e) => handleSolved(e)}
                             >Resolved</button>
