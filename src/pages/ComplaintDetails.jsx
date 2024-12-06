@@ -15,8 +15,9 @@ function ComplaintDetails() {
     const [error, setError] = useState(null);
     const nav = useNavigate();
 
-    const { sidebarIsCollapse, userDetails } = useContext(appContext);
+    const { sidebarIsCollapse, userDetails, State } = useContext(appContext);
     const { userId } = userDetails;
+    const { WalletAddress, WriteContract, ReadContract } = State;
 
     // Feedback
     const feedbackInitialState = {
@@ -76,9 +77,6 @@ function ComplaintDetails() {
             return;
         }
 
-        console.log(forwardData);
-
-
         await trackingComplaint(forwardData)
             .then((response) => {
                 if (response.status == 200) {
@@ -93,6 +91,19 @@ function ComplaintDetails() {
     // Actions
     const handleAccept = async (e) => {
         e.preventDefault();
+
+        // const tx = await WriteContract.fileComplaint(
+        //     id,
+        //     userId,
+        //     complaint.description,
+        //     complaint.complaintOffice
+        // )
+        //     .send({ from: WalletAddress });
+        // await tx.wait();
+
+        // console.log("Inserted successfully");
+
+
         const statusData = {
             "complaintId": id,
             "status": "accepted"
@@ -142,6 +153,7 @@ function ComplaintDetails() {
     // Load Complaint
     const loadComplaint = async () => {
         try {
+            // Web2
             await fetchComplaintById({ complaintId: id })
                 .then((response) => {
                     setComplaint(response);

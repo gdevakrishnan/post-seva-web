@@ -39,7 +39,7 @@ const App = () => {
     // Web 3.0
     const initialState = {
         WindowEthereum: false,
-        ContractAddress: "0x5F8F608F7F30EC59b54c32D28E5AB00d372B1DE6",
+        ContractAddress: "0xa3803C33f71561C4FdA8b6572C7CEC2c9A19f0F6",
         WalletAddress: null,
         ContractAbi: ABI.abi,
         Provider: null,
