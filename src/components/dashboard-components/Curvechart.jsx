@@ -93,7 +93,8 @@ export default function Curvechart(props) {
                     ]}
                     height={300} // Set height of the chart
                     margin={{ left: 50, right: 50, top: 50, bottom: 50 }} // Set margins
-                    width={700} // Ensure chart takes the appropriate width
+                    width={850} // Ensure chart takes the appropriate width
+                    legendPosition="top" // Position the legend at the top
                 />
             ) : (
                 <p>No data available for the selected filters.</p> // Handle empty data gracefully

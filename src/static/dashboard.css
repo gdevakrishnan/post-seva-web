@@ -150,7 +150,8 @@
   color: #555;
   transition: all 0.3s ease-in-out;
   border-radius: 8px 8px 0 0;
-  border: none;  /* Ensures no border by default */
+  border: none;
+  /* Ensures no border by default */
 }
 
 .react-tabs__tab:hover {
@@ -160,15 +161,19 @@
 
 /* Active Tab (Selected) */
 .react-tabs__tab--selected {
-  background-color: white; /* Updated selected tab color */
+  background-color: white;
+  /* Updated selected tab color */
   color: #B71C1C;
-  border-bottom: none; /* Ensure no border when tab is selected */
+  border-bottom: none;
+  /* Ensure no border when tab is selected */
 }
 
 /* Remove Focus Border (on click/focus) */
 .react-tabs__tab--focus {
-  outline: none !important; /* Remove focus outline */
-  border: none; /* Remove any border on focus */
+  outline: none !important;
+  /* Remove focus outline */
+  border: none;
+  /* Remove any border on focus */
 }
 
 /* Tab Panel */
@@ -186,6 +191,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -250,7 +256,8 @@
   cursor: pointer;
   color: #555;
   transition: background-color 0.3s, color 0.3s;
-  border: none;  /* No border by default */
+  border: none;
+  /* No border by default */
   border-radius: 8px 8px 0 0;
   outline: none;
 }
@@ -265,25 +272,30 @@
 .react-tabs__tab--selected {
   background-color: white;
   color: #B71C1C;
-  border-bottom: none;  /* No border below selected tab */
-  box-shadow: inset 0 -4px 0 0 #B71C1C;  /* Underline effect on active tab */
+  border-bottom: none;
+  /* No border below selected tab */
+  box-shadow: inset 0 -4px 0 0 #B71C1C;
+  /* Underline effect on active tab */
 }
 
 /* Focus State (for accessibility) */
 .react-tabs__tab--focus {
   outline: none !important;
-  border: none; /* Remove any border when focused */
+  border: none;
+  /* Remove any border when focused */
 }
 
 /* Tab Panel */
 .react-tabs__tab-panel {
   padding: 20px 20px 40px;
   animation: fadeIn 0.5s ease-in-out;
-  display: none;  /* Hide by default */
+  display: none;
+  /* Hide by default */
 }
 
 .react-tabs__tab-panel--selected {
-  display: block;  /* Show selected panel */
+  display: block;
+  /* Show selected panel */
 }
 
 /* Animation for Panel */
@@ -291,6 +303,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -315,4 +328,101 @@
 .chart-container canvas {
   max-width: 100%;
   height: auto;
+}
+
+.horizontal-tablist {
+  display: flex;
+  margin: 10px 0px 0px;
+  border-bottom: 1px solid #d8d8d8;
+}
+
+.react-tabs {
+  width: 70vw;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Filter Form */
+.filter-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px; /* Spacing between elements */
+  background-color: #f9f9f9; /* Light background for contrast */
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* Space below the form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid #ddd; /* Subtle border for structure */
+  min-width: 60%;
+}
+
+.filter-form div {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Ensures all form elements have consistent width */
+  min-width: 150px; /* Prevents elements from becoming too small */
+}
+
+.filter-form label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555; /* Slightly muted text color */
+  margin-bottom: 5px; /* Space between label and select */
+}
+
+.filter-form select {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-form select:focus {
+  border-color: #b71c1c; /* Highlighted border color on focus */
+  box-shadow: 0 0 4px rgba(183, 28, 28, 0.5); /* Subtle shadow effect */
+}
+
+.filter-form button {
+  background-color: #b71c1c; /* Primary button color */
+  color: #fff;
+  padding: 12px 25px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.filter-form button:hover {
+  background-color: #9a1616; /* Slightly darker red on hover */
+}
+
+.filter-form button:active {
+  transform: scale(0.98); /* Subtle click effect */
+  background-color: #7e1212; /* Even darker shade */
+}
+
+@media (max-width: 768px) {
+  .filter-form {
+    flex-direction: column; /* Stack elements vertically on smaller screens */
+    gap: 10px;
+  }
+
+  .filter-form div {
+    width: 100%; /* Ensure full width on smaller screens */
+  }
+
+  .filter-form button {
+    width: 100%; /* Full-width button for mobile */
+  }
 }

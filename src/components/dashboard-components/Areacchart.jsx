@@ -59,10 +59,10 @@ export default function Areachart(props) {
         <div style={{ width: '100%' }}>
             {formattedData.length > 0 ? (
                 <AreaChart
-                    width={700}
+                    width={850}
                     height={300}
                     data={formattedData}
-                    margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                    margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis 
