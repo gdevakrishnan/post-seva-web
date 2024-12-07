@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import "../static/dashboard.css";
 import appContext from "../context/appContext";
-import { Bar, Pie } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +12,10 @@ import {
   ArcElement,
 } from "chart.js";
 import { FaThumbsUp, FaPeopleCarry, FaTasks, FaRegThumbsUp } from "react-icons/fa"; // Import icons
+import Linechart from "../components/dashboard-components/Linechart";
+import Areachart from "../components/dashboard-components/Areacchart";
+import Curvechart from "../components/dashboard-components/Curvechart";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs"; // Import Tabs from react-tabs package
 
 // Register the necessary components for Chart.js
 ChartJS.register(
@@ -78,38 +81,6 @@ function Dashboard() {
   // Extracting KPI Data
   const kpi = postalData.postalOffices[0].kpiReports;
 
-  // Data for the Bar Chart (CSAT and NPS)
-  const barData = {
-    labels: ["CSAT (%)", "NPS (%)", "Resolution (%)", "Reviews Addressed (%)"],
-    datasets: [
-      {
-        label: "KPI Performance",
-        data: [
-          kpi.customerSatisfactionScore.data.csatPercentage,
-          kpi.netPromoterScore.data.nps,
-          kpi.resolutionFeedbackScore.data.resolutionPercentage,
-          kpi.reviewsAddressed.data.addressedPercentage,
-        ],
-        backgroundColor: ["#4CAF50", "#2196F3", "#FF9800", "#E91E63"],
-      },
-    ],
-  };
-
-  // Data for the Pie Chart (Sentiment Analysis)
-  const pieData = {
-    labels: ["Positive", "Neutral", "Negative"],
-    datasets: [
-      {
-        data: [
-          kpi.sentimentAnalysis.data.positive,
-          kpi.sentimentAnalysis.data.neutral,
-          kpi.sentimentAnalysis.data.negative,
-        ],
-        backgroundColor: ["#4CAF50", "#FFC107", "#F44336"],
-      },
-    ],
-  };
-
   return (
     <Fragment>
       <section
@@ -121,10 +92,6 @@ function Dashboard() {
           float: "right",
         }}
       >
-        {/* <div className="dashboard-header">
-          <p>Post Office Code: 641042</p>
-        </div> */}
-
         {/* KPI Cards */}
         <div className="kpi-cards">
           <div className="card" title="Customer Satisfaction based on feedback and surveys.">
@@ -149,18 +116,71 @@ function Dashboard() {
           </div>
         </div>
 
-        {/* Charts Section */}
-        <div className="charts">
-          <div className="chart-container">
-            <h3>KPI Bar Chart</h3>
-            <Bar data={barData} />
-          </div>
-          <br />
-          <div className="chart-container">
-            <h3>Sentiment Analysis</h3>
-            <Pie data={pieData} />
-          </div>
-        </div>
+        {/* Tabs for Charts */}
+        <Tabs className="react-tabs">
+          <TabList>
+            <Tab>Postal Services</Tab>
+            <Tab>Financial Services</Tab>
+            <Tab>Complaint Metrics</Tab>
+            <Tab>Other Analytics</Tab>
+          </TabList>
+
+          {/* Postal Services Tab */}
+          <TabPanel>
+            <div className="charts">
+              <div className="chart-container">
+                <h3>Delivery Time Compliance</h3>
+                <Areachart post_office_code="641001" year="2023" sub_metric="accuracy_in_delivery"/>
+              </div>
+              <div className="chart-container">
+                <h3>Undelivered Mail Rate</h3>
+                <Linechart post_office_code="641001" year="2023" sub_metric="undelivered_mail_rate"/>
+              </div>
+              <div className="chart-container">
+                <h3>Revenue from Postal Services</h3>
+                <Curvechart post_office_code="641001" year="2023" sub_metric="revenue_from_postal_services"/>
+              </div>
+            </div>
+          </TabPanel>
+
+          {/* Financial Services Tab */}
+          <TabPanel>
+            <div className="charts">
+              <div className="chart-container">
+                <h3>Revenue from Financial Services</h3>
+                <Areachart post_office_code="641001" year="2023" sub_metric="revenue_from_financial_services"/>
+              </div>
+              <div className="chart-container">
+                <h3>Growth in Financial Services</h3>
+                <Curvechart post_office_code="641001" year="2023" sub_metric="growth_in_financial_services"/>
+              </div>
+            </div>
+          </TabPanel>
+
+          {/* Complaint Metrics Tab */}
+          <TabPanel>
+            <div className="charts">
+              <div className="chart-container">
+                <h3>Complaint Feedback</h3>
+                <Areachart post_office_code="641001" year="2023" sub_metric="customer_feedback"/>
+              </div>
+              <div className="chart-container">
+                <h3>Complaint Resolution Rate</h3>
+                <Curvechart post_office_code="641001" year="2023" sub_metric="complaint_resolution_rate"/>
+              </div>
+            </div>
+          </TabPanel>
+
+          {/* Other Analytics Tab */}
+          <TabPanel>
+            <div className="charts">
+              <div className="chart-container">
+                <h3>Additional Metrics</h3>
+                <Areachart post_office_code="641001" year="2023" sub_metric="additional_metrics"/>
+              </div>
+            </div>
+          </TabPanel>
+        </Tabs>
       </section>
     </Fragment>
   );
