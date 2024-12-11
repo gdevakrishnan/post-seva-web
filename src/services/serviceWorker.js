@@ -87,3 +87,15 @@ export const updateStatus = async (statusData) => {
         throw error;
     }
 };
+
+// Get complaint operations
+export const getKpiData = async () => {    
+    try {
+        const response = await Axios.get(`${BASE_URL}/kpi/all`);
+        response = response.data.data[0].operations; 
+        return response;
+    } catch (error) {
+        console.error("Error fetching complaint by ID:", error);
+        throw error;
+    }
+};
