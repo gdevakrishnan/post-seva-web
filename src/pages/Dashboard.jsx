@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import "../static/dashboard.css";
 import appContext from "../context/appContext";
 import {
@@ -16,6 +16,7 @@ import Linechart from "../components/dashboard-components/Linechart";
 import Areachart from "../components/dashboard-components/Areacchart";
 import Curvechart from "../components/dashboard-components/Curvechart";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import { getKpiData } from "../services/serviceWorker";
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -99,6 +100,7 @@ const postOffices = [
 
 function Dashboard() {
   const { sidebarIsCollapse } = useContext(appContext);
+  const [kpiData, setKpiData] = useState(null);
 
   // Form state
   const [filters, setFilters] = useState({
@@ -141,6 +143,30 @@ function Dashboard() {
     }
   };
 
+  // Fetch KPI data and log it frequently using useEffect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchKpiData();
+    }, 5000); // Log data every 5 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [filters]);
+
+  const fetchKpiData = async () => {
+    getKpiData().then((response) => {
+      const fetchedData = {
+        totalPosts: response.no_of_posts,
+        totalPackages: response.no_of_packages,
+        totalComplaints: response.no_of_complaints,
+        totalResolvedComplaints: response.no_of_solved_complaints,
+      };
+      setKpiData(fetchedData);
+    })
+      .catch((e) => console.log(e.message));
+  };
+
+
   return (
     <Fragment>
       <section
@@ -154,23 +180,23 @@ function Dashboard() {
         <div className="kpi-cards">
           <div className="card" title="Customer Satisfaction based on feedback and surveys.">
             <FaThumbsUp className="card-icon" />
-            <h3>CSAT (%)</h3>
-            <p className="percentage">75%</p>
+            <h3>Total Posts</h3>
+            <p className="percentage">{kpiData ? kpiData.totalPosts : "67678"}</p>
           </div>
           <div className="card" title="Measures customer loyalty and likelihood to recommend.">
             <FaPeopleCarry className="card-icon" />
-            <h3>NPS (%)</h3>
-            <p className="percentage">10</p>
+            <h3>Total Packages</h3>
+            <p className="percentage">{kpiData ? kpiData.totalPackages : "56577"}</p>
           </div>
           <div className="card" title="Percentage of issues successfully resolved.">
             <FaTasks className="card-icon" />
-            <h3>Resolution (%)</h3>
-            <p className="percentage">85%</p>
+            <h3>Total Complaints</h3>
+            <p className="percentage">{kpiData ? kpiData.totalComplaints : "67765"}</p>
           </div>
           <div className="card" title="Percentage of customer reviews addressed and responded to.">
             <FaRegThumbsUp className="card-icon" />
-            <h3>Reviews Addressed (%)</h3>
-            <p className="percentage">83.33%</p>
+            <h3>Total Resolved Complaints</h3>
+            <p className="percentage">{kpiData ? kpiData.totalResolvedComplaints : "66580"}</p>
           </div>
         </div>
 
