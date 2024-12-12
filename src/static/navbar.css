@@ -1,4 +1,22 @@
-* {
+
+
+/* Buttons 3D Effect */
+button, .logout, .toggle-btn, .nav-item {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1); /* Layered shadow for 3D feel */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:active, .logout:active, .toggle-btn:active, .nav-item:active {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2), 0px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle shadow when pressed */
+  transform: translateY(2px); /* Slight downward movement on click */
+}
+.sidebar:hover {
+  box-shadow: 10px 0px 20px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s ease;
+}
+
+
+{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,9 +24,10 @@
 
 /* Sidebar Styling */
 .sidebar {
+  box-shadow: 5px 0px 15px rgba(0, 0, 0, 0.3); /* Adds a more pronounced shadow for 3D effect */
   width: 250px; /* Start with collapsed width */
   height: 100%;
-  background: linear-gradient(45deg, #ffffff, #fcfcfc);
+  background: linear-gradient(45deg,rgba(255, 0, 0));
   position: fixed;
   transition: width 0.5s ease, background 0.3s ease;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -27,10 +46,11 @@
 
 .brand {
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 1000;
   display: flex;
   align-items: center;
-  color: #fff;
+  color: #d20101;
+
 }
 
 .brand i {
@@ -50,6 +70,7 @@
   color: #fff;
   text-decoration: none;
   transition: background 0.3s ease, padding-left 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   position: relative;
   color: black;
 }
@@ -69,6 +90,8 @@
 
 .nav-item:hover {
   background: #B71C1C;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+
 }
 
 .nav-item:hover i {
@@ -160,6 +183,7 @@
   transition: transform 0.2s ease;
   transform: scaleY(0);
   transform-origin: bottom;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .nav-item:hover::before {
@@ -172,17 +196,20 @@ nav {
   width: 100vw;
   height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  background-color: #B71C1C;
+  background: linear-gradient(to right, rgba(255, 0, 0, 0.15), rgba(154, 93, 93, 0.15
+  ));
+  backdrop-filter: blur(30px); /* Add glass effect */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 999;
 }
-
 nav .brand {
-  color: #f3f4f6;
+  color: #cb0808;
 }
 
 li {
@@ -237,11 +264,24 @@ nav .group .user_details {
 }
 
 nav .group .user_details p {
-  color: #f3f4f6;
+  color: #c40505;
   line-height: 60px;
   font-size: 1rem;
 }
 
 nav button:hover {
   background-color: transparent;
+}
+.logout {
+  
+  color: rgb(184, 5, 5); 
+  border: none; 
+  padding: 10px 15px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+.logout:hover {
+  background-color: darkred; 
 }

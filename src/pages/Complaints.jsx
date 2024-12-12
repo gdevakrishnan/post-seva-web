@@ -31,10 +31,7 @@ const ComplaintList = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <section className="page dashboard_page" style={{
-      width: sidebarIsCollapse ? "100vw" : `calc(100vw - 250px + 80px)`,
-      float: "right",
-    }}>
+    <section className="page dashboard_page">
       <div className="blockchain_account">
         <p className="address"><span>Address:</span> {`${WalletAddress.slice(0, 7)}...${WalletAddress.slice(-5)}`}</p>
       </div>

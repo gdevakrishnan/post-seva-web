@@ -12,11 +12,15 @@ import {
   ArcElement,
 } from "chart.js";
 import { FaThumbsUp, FaPeopleCarry, FaTasks, FaRegThumbsUp } from "react-icons/fa";
+import { MdMail, MdLocalShipping, MdReportProblem , MdDoneAll, } from "react-icons/md";
 import Linechart from "../components/dashboard-components/Linechart";
 import Areachart from "../components/dashboard-components/Areacchart";
 import Curvechart from "../components/dashboard-components/Curvechart";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { getKpiData } from "../services/serviceWorker";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -174,7 +178,7 @@ function Dashboard() {
         <div className="simple-grid">
   <div className="stat-card" title="Customer Satisfaction based on feedback and surveys.">
     <div className="icon-box">
-      <FaThumbsUp size={32} className="icon-color" />
+      <MdMail size={32} className="icon-color" />
     </div>
     <div className="stat-details">
       <h4>Total Posts</h4>
@@ -184,7 +188,7 @@ function Dashboard() {
 
   <div className="stat-card" title="Measures customer loyalty and likelihood to recommend.">
     <div className="icon-box">
-      <FaPeopleCarry size={32} className="icon-color" />
+      <MdLocalShipping size={32} className="icon-color" />
     </div>
     <div className="stat-details">
       <h4>Total Packages</h4>
@@ -194,7 +198,7 @@ function Dashboard() {
 
   <div className="stat-card" title="Percentage of issues successfully resolved.">
     <div className="icon-box">
-      <FaTasks size={32} className="icon-color" />
+      <MdReportProblem size={32} className="icon-color" />
     </div>
     <div className="stat-details">
       <h4>Total Complaints</h4>
@@ -204,7 +208,7 @@ function Dashboard() {
 
   <div className="stat-card" title="Percentage of customer reviews addressed and responded to.">
     <div className="icon-box">
-      <FaRegThumbsUp size={32} className="icon-color" />
+      <MdDoneAll size={32} className="icon-color" />
     </div>
     <div className="stat-details">
       <h4>Total Resolved Complaints</h4>

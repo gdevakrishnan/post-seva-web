@@ -55,34 +55,27 @@
   grid-template-columns: repeat(auto-fill, minmax(600px, 1fr));
   gap: 40px;
   margin-top: 30px;
-  padding: 0 20px;
 }
-@media (max-width: 768px) {
-  .charts {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  }
-}
-
 
 .chart-container {
+  background-color: #fff;
   padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .chart-container h3 {
+  font-size: 20px;
   margin-bottom: 15px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #B71C1C;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  margin-top: 0;
 }
-
-.chart-container canvas {
-  max-width: 100%;
-  height: auto;
-} 
 
 /* Media Queries for responsiveness */
 @media (max-width: 1200px) {
@@ -128,17 +121,14 @@
 
 /* Tab Container */
 .react-tabs {
-  margin: 20px auto; /* Center the container horizontally with auto margin */
-  width: 120%; /* Make the container take full width */
-  max-width: 1200px; /* Max width to prevent it from being too wide */
+  margin: 20px 0;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px; /* Add some padding for better spacing */
-  transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
+/* Tab List */
 .react-tabs__tab-list {
   display: flex;
   margin: 0;
@@ -148,45 +138,7 @@
   justify-content: space-around;
   background-color: #f9f9f9;
   border-radius: 8px 8px 0 0;
-  width: 100%; /* Ensure tab list takes up full width */
 }
-
-.react-tabs__tab {
-  padding: 12px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.react-tabs__tab:hover {
-  background-color: #e0e0e0;
-}
-
-.react-tabs__tab--selected {
-  background-color: #b71c1c; /* Selected tab background color */
-  color: white; /* Text color on selected tab */
-}
-
-/* Media Query for Small Screens */
-@media (max-width: 768px) {
-  .react-tabs {
-    width: 100%; /* Ensure it takes full width on mobile */
-    max-width: none; /* Remove max-width restriction */
-    padding: 10px; /* Adjust padding for smaller screens */
-  }
-
-  .react-tabs__tab-list {
-    flex-direction: column; /* Stack the tabs vertically on smaller screens */
-  }
-
-  .react-tabs__tab {
-    padding: 10px 15px; /* Adjust tab padding on mobile */
-  }
-}
-
 
 /* Individual Tabs */
 .react-tabs__tab {
@@ -252,9 +204,6 @@
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: auto; /* Prevent overflow */
-  max-height: 500px; /* Set a max-height to prevent excessive growth */
-  width: 100%; /* Make sure the container is responsive */
 }
 
 .chart-container h3 {
@@ -265,10 +214,9 @@
 }
 
 .chart-container canvas {
-  width: 100%; /* Make canvas responsive */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 100%;
+  height: auto;
 }
-
 
 /* General Dashboard Styles */
 .page.dashboard_page {
@@ -362,15 +310,7 @@
 }
 
 /* Chart Container Styling */
-.chart-row {
-  display: flex;
-  justify-content: space-between; /* Or 'center', depending on your layout preference */
-  gap: 20px; /* Space between the charts */
-}
-
 .chart-container {
-  flex: 1; /* Ensures the charts grow/shrink to fit the row */
-  max-width: 48%; /* Ensures two charts fit in one row */
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
@@ -389,7 +329,6 @@
   max-width: 100%;
   height: auto;
 }
-
 
 .horizontal-tablist {
   display: flex;
@@ -622,4 +561,8 @@
   .stat-card {
     width: 100%; /* Ensure cards fill the width of the grid */
   }
+}
+.start_date {
+  padding: 5px;
+  font-size: 14px;
 }
