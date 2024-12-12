@@ -1,3 +1,4 @@
+
 import React, { Fragment, useState } from 'react';
 import '../static/register.css';
 import logo from '../assets/logo.png';

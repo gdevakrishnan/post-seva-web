@@ -11,8 +11,6 @@ function Home() {
       <section
         className="page home_page"
         style={{
-          width: sidebarIsCollapse ? '100vw' : 'calc(100vw - 250px + 80px)',
-          float: 'right',
           background: `linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0.3)), url(${bgImg})`,
           backgroundSize: 'cover', // Ensure the image covers the whole section
           backgroundPosition: 'center', // Center the image

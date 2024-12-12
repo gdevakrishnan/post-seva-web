@@ -22,7 +22,7 @@ const Navbar = () => {
         <Link to={'/'}>
           <div className="image" title='post-seva'><img src={logo} alt="postseva" className="logo" /></div>
         </Link>
-        {/* <h1 className="brand">Indian Post</h1> */}
+        <h1 className="brand">POST SEVA</h1>
         <div className="group">
           {
             (userDetails) && <div className="user_details">

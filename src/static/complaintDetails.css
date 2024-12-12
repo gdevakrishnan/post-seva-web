@@ -92,9 +92,9 @@
     text-align: center;
     margin-top: 20px;
 }
-
+/* 
 /* Responsive design */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .complaint-details {
         padding: 15px;
     }
@@ -111,7 +111,7 @@
     .complaint-details .complaint-table td {
         font-size: 0.9rem;
     }
-}
+} */ */
 
 .feedbacks ul {
     width: 100%;
@@ -370,3 +370,11 @@ input[type="text"] {
 .complaint-table tbody tr .status {
     color: #B71C1C;
 }
+.blockchain_account{
+    padding-right: 180px;
+    color: #B71C1C;
+    font-size: 1.25rem;
+    margin: 0;
+    text-align:left;
+  
+  }
