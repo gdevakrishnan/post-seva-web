@@ -10,7 +10,7 @@ import Complaints from '../pages/Complaints';
 import Chatbot from '../pages/Chatbot';
 import Mail from '../pages/Mail';
 import ComplaintDetails from '../pages/ComplaintDetails';
-
+import TablePage from '../pages/TablePage';
 function Router() {
   const { userDetails } = useContext(appContext);
   return (
@@ -26,6 +26,7 @@ function Router() {
           <Route path="/complaints/:id" element={<ComplaintDetails />} />
           <Route path="/ai-chat" element={<Chatbot />} />
           <Route path="/mail" element={<Mail />} />
+          <Route path="/tablepage" element={<TablePage />}/>
         </Routes>
         <Outlet />
       </BrowserRouter>

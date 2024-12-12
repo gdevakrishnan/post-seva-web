@@ -20,6 +20,8 @@ import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { getKpiData } from "../services/serviceWorker";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TablePage from "./TablePage";
+import { useNavigate } from "react-router-dom";
 
 
 // Register Chart.js components
@@ -121,6 +123,12 @@ function Dashboard() {
       [name]: value,
     }));
   };
+  const nav = useNavigate();
+  const handleCardClick = () => {
+    nav('/tablepage');
+    return <TablePage />
+  };
+
 
   // Filter post office options based on location
   const filteredPostOffices = postOffices.filter(
@@ -176,7 +184,8 @@ function Dashboard() {
       <section className="page dashboard_page">
         {/* KPI Cards */}
         <div className="simple-grid">
-  <div className="stat-card" title="Customer Satisfaction based on feedback and surveys.">
+  <div className="stat-card" title="Customer Satisfaction based on feedback and surveys."
+  onClick={handleCardClick}>
     <div className="icon-box">
       <MdMail size={32} className="icon-color" />
     </div>
@@ -185,18 +194,18 @@ function Dashboard() {
       <p className="main-number">{kpiData ? kpiData.totalPosts : "67678"}</p>
     </div>
   </div>
-
-  <div className="stat-card" title="Measures customer loyalty and likelihood to recommend.">
+  <div className="stat-card" title="Customer Satisfaction based on feedback and surveys."
+  onClick={handleCardClick}>
     <div className="icon-box">
-      <MdLocalShipping size={32} className="icon-color" />
+      <MdMail size={32} className="icon-color" />
     </div>
     <div className="stat-details">
-      <h4>Total Packages</h4>
-      <p className="main-number">{kpiData ? kpiData.totalPackages : "56577"}</p>
+      <h4>Postal Delays</h4>
+      <p className="main-number">{kpiData ? kpiData.totalPosts : "45"}</p>
     </div>
   </div>
-
-  <div className="stat-card" title="Percentage of issues successfully resolved.">
+  <div className="stat-card" title="Percentage of issues successfully resolved."
+  onClick={handleCardClick}>
     <div className="icon-box">
       <MdReportProblem size={32} className="icon-color" />
     </div>
@@ -206,7 +215,8 @@ function Dashboard() {
     </div>
   </div>
 
-  <div className="stat-card" title="Percentage of customer reviews addressed and responded to.">
+  <div className="stat-card" title="Percentage of customer reviews addressed and responded to."
+  onClick={handleCardClick}>
     <div className="icon-box">
       <MdDoneAll size={32} className="icon-color" />
     </div>
@@ -278,6 +288,10 @@ function Dashboard() {
                   <div className="chart-container" key={subIndex}>
                     <h3>{subMetric.title}</h3>
                     {renderChartComponent(subMetric.component, subMetric.subMetricKey)}
+                    <div className="view-more-button">
+                        <button onClick={handleCardClick}> View More</button>
+                      </div>
+
                   </div>
                   </div>
                 ))}
