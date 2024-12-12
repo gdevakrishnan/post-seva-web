@@ -107,12 +107,7 @@ function Mail() {
   return (
     <Fragment>
       <section
-        className="page mail_page"
-        style={{
-          width: sidebarIsCollapse ? '100vw' : 'calc(100vw - 250px + 80px)',
-          float: 'right',
-        }}
-      >
+        className="page mail_page">
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             {/* Sender Form */}

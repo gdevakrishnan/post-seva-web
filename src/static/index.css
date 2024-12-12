@@ -17,12 +17,14 @@ body {
 
 .page {
     position: relative;
-    top: 60px;
-    left: 80px;
+    top: 30px;
+    left: 250px;
     overflow-x: hidden;
     transition: width 0.5s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    width: calc(100vw - 250px);
+    padding-top: 60px;
 }

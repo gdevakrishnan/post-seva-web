@@ -350,79 +350,260 @@
 /* Filter Form */
 .filter-form {
   display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
   align-items: center;
   justify-content: space-between;
-  gap: 15px; /* Spacing between elements */
+  gap: 20px; /* Increased spacing between elements */
   background-color: #f9f9f9; /* Light background for contrast */
-  padding: 15px 20px;
-  border-radius: 8px;
-  margin-bottom: 20px; /* Space below the form */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  padding: 20px;
+  border-radius: 12px; /* Slightly more rounded corners */
+  margin-bottom: 30px; /* Increased space below the form */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
   border: 1px solid #ddd; /* Subtle border for structure */
-  min-width: 60%;
+  width: 98%; /* Allow the form to take full width */
+  max-width: 1200px; /* Maximum width to prevent it from being too wide */
+  margin-left: auto; /* Center the form horizontally */
+  margin-right: auto; /* Center the form horizontally */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
 .filter-form div {
   display: flex;
   flex-direction: column;
-  flex: 1; /* Ensures all form elements have consistent width */
-  min-width: 150px; /* Prevents elements from becoming too small */
+  flex: 1;
+  min-width: 180px; /* Ensure minimum width for readability */
 }
 
 .filter-form label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #555; /* Slightly muted text color */
-  margin-bottom: 5px; /* Space between label and select */
+  font-size: 16px;
+  font-weight: 600; /* Make the label bolder */
+  color: #333; /* Darker color for better readability */
+  margin-bottom: 8px;
 }
 
 .filter-form select {
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 16px; /* Increased font size for better readability */
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 8px;
   background-color: #fff;
   outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+  width: 100%; /* Ensure select takes full width */
 }
 
 .filter-form select:focus {
-  border-color: #b71c1c; /* Highlighted border color on focus */
-  box-shadow: 0 0 4px rgba(183, 28, 28, 0.5); /* Subtle shadow effect */
+  border-color: #b71c1c;
+  box-shadow: 0 0 6px rgba(183, 28, 28, 0.5);
 }
 
 .filter-form button {
   background-color: #b71c1c; /* Primary button color */
   color: #fff;
-  padding: 12px 25px;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 150px; /* Limit button width */
+  align-self: center; /* Align the button to the center */
 }
 
 .filter-form button:hover {
-  background-color: #9a1616; /* Slightly darker red on hover */
+  background-color: #9a1616;
 }
 
 .filter-form button:active {
-  transform: scale(0.98); /* Subtle click effect */
-  background-color: #7e1212; /* Even darker shade */
+  transform: scale(0.98);
+  background-color: #7e1212;
 }
 
+/* Media Query for Small Screens */
 @media (max-width: 768px) {
   .filter-form {
-    flex-direction: column; /* Stack elements vertically on smaller screens */
-    gap: 10px;
+    flex-direction: column; /* Stack the elements vertically on smaller screens */
+    gap: 15px;
+    padding: 15px;
+    width: 100%; /* Ensure it takes full width on mobile */
+    max-width: none; /* Remove max-width restriction */
   }
 
   .filter-form div {
-    width: 100%; /* Ensure full width on smaller screens */
+    width: 100%; /* Make each select box take up full width */
   }
 
   .filter-form button {
-    width: 100%; /* Full-width button for mobile */
+    width: 100%; /* Full-width button on mobile */
   }
+}
+
+/* Grid layout for statistics cards */
+.simple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Default to 3 equal-width columns */
+  gap: 10px; /* Reduced gap between cards */
+  padding: 10px; /* Reduced padding for better fit */
+  margin-top: 20px;
+  width: 100%; /* Ensure grid takes full available width */
+  max-width: 100vw; /* Ensure the grid doesn't exceed viewport width */
+  box-sizing: border-box; /* Include padding and borders in width calculation */
+  overflow-x: auto; /* Allow horizontal scrolling if content overflows */
+}
+
+/* Styling for each stat card */
+.stat-card {
+  background: #fff;
+  border-radius: 20px; /* Increased value for more rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  display: flex;
+  align-items: center; /* Align items vertically */
+  justify-content: flex-start; /* Align items horizontally to the left */
+  width: 100%; /* Make card take full width of its container */
+  height: auto; /* Adjust height based on content */
+  min-height: 80px; /* Minimum height for consistent card size */
+  text-align: left; /* Align text to the left */
+  overflow: hidden;
+  box-sizing: border-box; /* Include padding in width/height calculation */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for the stat card */
+.stat-card:hover {
+  transform: translateY(-5px); /* Lift the card slightly */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Add a larger shadow on hover */
+}
+
+/* Icon box styling */
+.icon-box {
+  background: linear-gradient(45deg, #c23030, #e85b5b);
+  border-radius: 50%; /* Round icon box */
+  padding: 12px; /* Adjust padding to center icon nicely */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center; /* Center icon vertically */
+  justify-content: center; /* Center icon horizontally */
+  margin-right: 15px; /* Add space between icon and text */
+}
+
+/* Stat details (name, value) */
+.stat-details {
+  color: #020202; /* Dark text color for value */
+  text-align: left; /* Align text to the left */
+}
+
+.stat-details h4 {
+  font-size: 0.9rem; /* Reduced font size for the name */
+  margin: 0;
+  color: #888; /* Lighter grey for the name */
+}
+
+/* Main number styling */
+.main-number {
+  font-size: 1.2rem; /* Larger font size for numbers */
+  font-weight: bold;
+  color: #000000; /* Black color for the number */
+}
+
+/* Optional - Adjust all text in the card to smaller grey except for the main number */
+.stat-details p {
+  font-size: 1rem;  /* Smaller size for labels and other text */
+  color: #777;  /* Light grey for all text except the numbers */
+}
+
+.growth {
+  color: #38a169; /* Green for growth indicator */
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+/* Icon color */
+.icon-color {
+  color:#fff; /* White color for icons */
+}
+
+/* Optional background gradient for specific cards */
+.stat-card.bg-gradient {
+  background: linear-gradient(90deg, #4481eb 0%, #04befe 100%);
+  color: white;
+}
+
+/* Make the layout responsive */
+@media (max-width: 1024px) {
+  .simple-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
+
+  .stat-card {
+    width: 100%; /* Make cards take full width on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .simple-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 column for small screens */
+  }
+
+  .stat-card {
+    width: 100%; /* Ensure cards take up the full screen width */
+  }
+}
+
+@media (min-width: 1200px) {
+  .simple-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns for larger screens */
+  }
+
+  .stat-card {
+    width: 100%; /* Ensure cards fill the width of the grid */
+  }
+}
+.start_date {
+  padding: 5px;
+  font-size: 14px;
+}
+.view-more-button button {
+  position: relative;
+  left: 370%;
+  padding: 15px;
+  background: linear-gradient(45deg, #c23030, #e85b5b);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.view-more-button button:hover {
+  background-color: #b83232;  /* Slightly lighter shade of red */
+  transform: scale(1.05);  /* Slightly enlarge the button */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);  /* Add shadow for depth */
+}
+
+/* Focus effect */
+.view-more-button button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 0.7);  /* Highlight border on focus */
+}
+
+/* Animation effect when the page loads */
+@keyframes buttonLoad {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.view-more-button button {
+  animation: buttonLoad 1s ease-out;
 }

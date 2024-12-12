@@ -9,14 +9,7 @@ function Chatbot() {
 
   return (
     <Fragment>
-      <section className="page chatbot_page"
-        style={{
-          width: sidebarIsCollapse
-            ? "100vw"
-            : `calc(100vw - 250px + 80px)`,
-          float: "right"
-        }}
-      >
+      <section className="page chatbot_page">
         <h1>Chatbot page</h1>
       </section>
     </Fragment>
