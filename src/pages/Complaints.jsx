@@ -68,10 +68,7 @@ function Complaints() {
 
   const ConnectWallet = () => {
     return (
-      <section className="page connect-wallet-page" style={{
-        width: sidebarIsCollapse ? "100vw" : `calc(100vw - 250px + 80px)`,
-        float: "right",
-      }}>
+      <section className="page connect-wallet-page">
         <button onClick={() => getStateParameters()} className="connect-wallet-button">
           Connect Wallet
         </button>

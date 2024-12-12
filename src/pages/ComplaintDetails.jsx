@@ -176,15 +176,7 @@ function ComplaintDetails() {
     if (!complaint) return <div>No data available</div>;
 
     return (
-        <section
-            className="page complaint_page"
-            style={{
-                width: sidebarIsCollapse
-                    ? "100vw"
-                    : `calc(100vw - 250px + 80px)`,
-                float: "right",
-            }}
-        >
+        <section className="page complaint_page">
             <div className="buttons">
                 <div className="actions">
                     <button className="btn back" onClick={(e) => {

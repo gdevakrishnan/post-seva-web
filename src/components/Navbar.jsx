@@ -18,11 +18,11 @@ const Navbar = () => {
 
   return (
     <Fragment>
-      <nav>
+      {/* <nav>
         <Link to={'/'}>
           <div className="image" title='post-seva'><img src={logo} alt="postseva" className="logo" /></div>
-        </Link>
-        {/* <h1 className="brand">Indian Post</h1> */}
+        </Link> */}
+        {/* <h1 className="brand">Indian Post</h1>
         <div className="group">
           {
             (userDetails) && <div className="user_details">
@@ -36,7 +36,7 @@ const Navbar = () => {
             nav('/login')
           }}><IoExitOutline /></button>
         </div>
-      </nav>
+      </nav> */}
       <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}
         onMouseEnter={() => {
           setIsCollapsed(!isCollapsed);
