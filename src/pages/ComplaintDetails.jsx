@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../static/complaints.css";
 import { createFeedback, fetchComplaintById, trackingComplaint, updateStatus } from "../services/serviceWorker";
@@ -8,6 +8,16 @@ import { HiUserCircle } from "react-icons/hi2";
 import { IoCaretBackOutline } from "react-icons/io5";
 
 function ComplaintDetails() {
+    const web3InitialState = {
+        "userID": "",
+        "postalCode": "",
+        "description": "",
+        "feedback": "",
+        "feedbackAuthor": "",
+        "status": 0,
+        "staff": ""
+    }
+    const [web3Data, setWeb3Data] = useState(web3InitialState);
     const { id } = useParams();
 
     const [complaint, setComplaint] = useState(null);
@@ -17,7 +27,28 @@ function ComplaintDetails() {
 
     const { sidebarIsCollapse, userDetails, State } = useContext(appContext);
     const { userId } = userDetails;
-    const { WalletAddress, WriteContract, ReadContract } = State;
+    const { WriteContract, ReadContract } = State;
+
+    const getComplaintWeb3 = async () => {
+        // Status update to rejected
+        console.log("Please wait to Rejected the complaint...");
+        const tx = await ReadContract.getComplaint(id);
+        const { userId, postOfficeCode, description, feedback, feedbackAuthor, status, staff } = tx;
+
+        setWeb3Data({
+            userID: userId,
+            postalCode: postOfficeCode,
+            description,
+            feedback,
+            feedbackAuthor,
+            status,
+            staff
+        })
+    }
+
+    useEffect(() => {
+        getComplaintWeb3();
+    }, [complaint]);
 
     // Feedback
     const feedbackInitialState = {
@@ -27,7 +58,7 @@ function ComplaintDetails() {
     }
     const [feedback, setFeedback] = useState(feedbackInitialState);
 
-    const handleFeedbackSubmit = (e) => {
+    const handleFeedbackSubmit = async (e) => {
         e.preventDefault();
         if (feedback.complaintId.trim() === "") {
             alert("Complaint not found");
@@ -41,6 +72,10 @@ function ComplaintDetails() {
             alert("User ID not found");
             return;
         }
+
+        console.log("Please wait to submit your feedback...");
+        const tx = await WriteContract.addFeedback(feedback.complaintId, feedback.userId, feedback.feedback);
+        await tx.wait();
 
         createFeedback(feedback)
             .then((response) => {
@@ -77,6 +112,11 @@ function ComplaintDetails() {
             return;
         }
 
+        // Assign staff
+        console.log("Please wait to assign a staff...");
+        const tx = await WriteContract.assignStaff(forwardData.complaintId, forwardData.staff);
+        await tx.wait();
+
         await trackingComplaint(forwardData)
             .then((response) => {
                 if (response.status == 200) {
@@ -92,17 +132,24 @@ function ComplaintDetails() {
     const handleAccept = async (e) => {
         e.preventDefault();
 
-        // const tx = await WriteContract.fileComplaint(
-        //     id,
-        //     userId,
-        //     complaint.description,
-        //     complaint.complaintOffice
-        // )
-        //     .send({ from: WalletAddress });
-        // await tx.wait();
+        // Accept the complaint
+        console.log("Please wait...");
 
-        // console.log("Inserted successfully");
+        var tx = await WriteContract.fileComplaint(
+            id,
+            userId,
+            complaint.description,
+            complaint.complaintOffice
+        )
+        await tx.wait();
+        console.log("Inserted successfully");
 
+        // Status update to accept
+        console.log("Please wait to accept the complaint...");
+        tx = await WriteContract.updateComplaintStatus(id, 1);
+        await tx.wait();
+
+        console.log("Accepted successfully");
 
         const statusData = {
             "complaintId": id,
@@ -124,6 +171,12 @@ function ComplaintDetails() {
             "complaintId": id,
             "status": "rejected"
         }
+
+        // Status update to rejected
+        console.log("Please wait to Rejected the complaint...");
+        const tx = await WriteContract.updateComplaintStatus(id, 5);
+        await tx.wait();
+
         await updateStatus(statusData)
             .then((response) => {
                 if (response.status == 200) {
@@ -140,6 +193,12 @@ function ComplaintDetails() {
             "complaintId": id,
             "status": "closed"
         }
+
+        // Status update to closed
+        console.log("Please wait to Closed the complaint...");
+        const tx = await WriteContract.updateComplaintStatus(id, 4);
+        await tx.wait();
+
         await updateStatus(statusData)
             .then((response) => {
                 if (response.status == 200) {
@@ -178,12 +237,6 @@ function ComplaintDetails() {
     return (
         <section
             className="page complaint_page"
-            style={{
-                width: sidebarIsCollapse
-                    ? "100vw"
-                    : `calc(100vw - 250px + 80px)`,
-                float: "right",
-            }}
         >
             <div className="buttons">
                 <div className="actions">
@@ -359,7 +412,53 @@ function ComplaintDetails() {
                     )}
                 </div>
             </div>
-        </section>
+
+            {
+                web3Data.postalCode.trim() !== "" && postalCode.trim() !== "" && web3Data.description.trim() !== "" && web3Data.feedback.trim() !== "" && web3Data.feedbackAuthor.trim() !== "" && web3Data.status != 0 && web3Data.staff.trim() !== "" && 
+                <div className="web3-table complaint-details">
+                    <h1>Verify Data</h1>
+                    <table className="complaint-table">
+                        <tbody>
+                            <tr>
+                                <th>Complaint Office</th>
+                                <td>{web3Data.postalCode}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{web3Data.description}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                { (web3Data.status == 1) ? (<td style={{color: "#00b400"}}>Accepted</td>) : null }
+                                { (web3Data.status == 4) ? (<td style={{color: "#00b400"}}>Closed</td>) : null }
+                                { (web3Data.status == 5) ? (<td style={{color: "#b40000"}}>Rejected</td>) : null }
+                            </tr>
+                            {/* Conditionally render staff if it exists */}
+                            {web3Data.staff && (
+                                <tr>
+                                    <th>Current Staff</th>
+                                    <td>{web3Data.staff}</td>
+                                </tr>
+                            )}
+                            {
+                                web3Data.feedback && web3Data.feedbackAuthor && (
+                                    <Fragment>
+                                        <tr>
+                                            <th>Feedback</th>
+                                            <td>{web3Data.feedback}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Feedback AUthor</th>
+                                            <td>{web3Data.feedbackAuthor}</td>
+                                        </tr>
+                                    </Fragment>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </section >
     );
 }
 

@@ -23,21 +23,21 @@
     padding-bottom: 10px;
 }
 
-.complaint-details .complaint-table {
+.complaint-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.complaint-details .complaint-table th,
-.complaint-details .complaint-table td {
+.complaint-table th,
+.complaint-table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #BDC3C7;
     /* Border between rows */
 }
 
-.complaint-details .complaint-table th {
+.complaint-table th {
     background-color: #ECF0F1;
     /* Light gray background for headers */
     color: #7F8C8D;
@@ -45,19 +45,19 @@
     font-weight: bold;
 }
 
-.complaint-details .complaint-table td {
+.complaint-table td {
     background-color: #fff;
     color: #34495E;
     /* Dark text for values */
     font-size: 1rem;
 }
 
-.complaint-details .complaint-table tr:nth-child(even) td {
+.complaint-table tr:nth-child(even) td {
     background-color: #F9F9F9;
     /* Subtle background for even rows */
 }
 
-.complaint-details .complaint-table td strong {
+.complaint-table td strong {
     font-weight: bold;
     color: #2C3E50;
     /* Dark color for labels */
@@ -103,12 +103,12 @@
         font-size: 1.5rem;
     }
 
-    .complaint-details .complaint-table th,
-    .complaint-details .complaint-table td {
+    .complaint-table th,
+    .complaint-table td {
         padding: 10px;
     }
 
-    .complaint-details .complaint-table td {
+    .complaint-table td {
         font-size: 0.9rem;
     }
 }
@@ -369,4 +369,19 @@ input[type="text"] {
 /* Status color */
 .complaint-table tbody tr .status {
     color: #B71C1C;
+}
+
+.web3-table {
+    width: 65vw;
+    width: 100%;
+    max-width: 900px;
+    /* Limit the width of the table */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Soft shadow effect */
+    overflow: hidden;
 }

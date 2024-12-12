@@ -12,11 +12,17 @@ import {
   ArcElement,
 } from "chart.js";
 import { FaThumbsUp, FaPeopleCarry, FaTasks, FaRegThumbsUp } from "react-icons/fa";
+import { MdMail, MdLocalShipping, MdReportProblem , MdDoneAll, } from "react-icons/md";
 import Linechart from "../components/dashboard-components/Linechart";
 import Areachart from "../components/dashboard-components/Areacchart";
 import Curvechart from "../components/dashboard-components/Curvechart";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import { getKpiData } from "../services/serviceWorker";
+// import DatePicker from "react-datepicker";
+// import "react-datepicker/dist/react-datepicker.css";
+import TablePage from "./TablePage";
+import { useNavigate } from "react-router-dom";
+
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
@@ -117,6 +123,12 @@ function Dashboard() {
       [name]: value,
     }));
   };
+  const nav = useNavigate();
+  const handleCardClick = () => {
+    nav('/tablepage');
+    return <TablePage />
+  };
+
 
   // Filter post office options based on location
   const filteredPostOffices = postOffices.filter(
@@ -169,36 +181,52 @@ function Dashboard() {
 
   return (
     <Fragment>
-      <section
-        className="page dashboard_page"
-        style={{
-          width: sidebarIsCollapse ? "100vw" : `calc(100vw - 250px + 80px)`,
-          float: "right",
-        }}
-      >
+      <section className="page dashboard_page">
         {/* KPI Cards */}
-        <div className="kpi-cards">
-          <div className="card" title="Customer Satisfaction based on feedback and surveys.">
-            <FaThumbsUp className="card-icon" />
-            <h3>Total Posts</h3>
-            <p className="percentage">{kpiData ? kpiData.totalPosts : "67678"}</p>
-          </div>
-          <div className="card" title="Measures customer loyalty and likelihood to recommend.">
-            <FaPeopleCarry className="card-icon" />
-            <h3>Total Packages</h3>
-            <p className="percentage">{kpiData ? kpiData.totalPackages : "56577"}</p>
-          </div>
-          <div className="card" title="Percentage of issues successfully resolved.">
-            <FaTasks className="card-icon" />
-            <h3>Total Complaints</h3>
-            <p className="percentage">{kpiData ? kpiData.totalComplaints : "67765"}</p>
-          </div>
-          <div className="card" title="Percentage of customer reviews addressed and responded to.">
-            <FaRegThumbsUp className="card-icon" />
-            <h3>Total Resolved Complaints</h3>
-            <p className="percentage">{kpiData ? kpiData.totalResolvedComplaints : "66580"}</p>
-          </div>
-        </div>
+        <div className="simple-grid">
+  <div className="stat-card" title="Customer Satisfaction based on feedback and surveys."
+  onClick={handleCardClick}>
+    <div className="icon-box">
+      <MdMail size={32} className="icon-color" />
+    </div>
+    <div className="stat-details">
+      <h4>Total Posts</h4>
+      <p className="main-number">{kpiData ? kpiData.totalPosts : "67678"}</p>
+    </div>
+  </div>
+  <div className="stat-card" title="Customer Satisfaction based on feedback and surveys."
+  onClick={handleCardClick}>
+    <div className="icon-box">
+      <MdMail size={32} className="icon-color" />
+    </div>
+    <div className="stat-details">
+      <h4>Postal Delays</h4>
+      <p className="main-number">{kpiData ? kpiData.totalPosts : "45"}</p>
+    </div>
+  </div>
+  <div className="stat-card" title="Percentage of issues successfully resolved."
+  onClick={handleCardClick}>
+    <div className="icon-box">
+      <MdReportProblem size={32} className="icon-color" />
+    </div>
+    <div className="stat-details">
+      <h4>Total Complaints</h4>
+      <p className="main-number">{kpiData ? kpiData.totalComplaints : "67765"}</p>
+    </div>
+  </div>
+
+  <div className="stat-card" title="Percentage of customer reviews addressed and responded to."
+  onClick={handleCardClick}>
+    <div className="icon-box">
+      <MdDoneAll size={32} className="icon-color" />
+    </div>
+    <div className="stat-details">
+      <h4>Total Resolved Complaints</h4>
+      <p className="main-number">{kpiData ? kpiData.totalResolvedComplaints : "66580"}</p>
+    </div>
+  </div>
+</div>
+
 
         {/* Filter Form */}
         <form className="filter-form">
@@ -256,9 +284,15 @@ function Dashboard() {
             <TabPanel key={index}>
               <div className="charts">
                 {metric.subMetrics.map((subMetric, subIndex) => (
+                  <div className="charts-wrapper">
                   <div className="chart-container" key={subIndex}>
                     <h3>{subMetric.title}</h3>
                     {renderChartComponent(subMetric.component, subMetric.subMetricKey)}
+                    <div className="view-more-button">
+                        <button onClick={handleCardClick}> View More</button>
+                      </div>
+
+                  </div>
                   </div>
                 ))}
               </div>

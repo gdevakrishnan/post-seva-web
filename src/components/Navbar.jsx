@@ -22,7 +22,7 @@ const Navbar = () => {
         <Link to={'/'}>
           <div className="image" title='post-seva'><img src={logo} alt="postseva" className="logo" /></div>
         </Link>
-        {/* <h1 className="brand">Indian Post</h1> */}
+        <h1 className="brand">POST SEVA</h1>
         <div className="group">
           {
             (userDetails) && <div className="user_details">
@@ -37,7 +37,7 @@ const Navbar = () => {
           }}><IoExitOutline /></button>
         </div>
       </nav>
-      <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}
+      {/* <div className={sidebar ${isCollapsed ? 'collapsed' : ''}}
         onMouseEnter={() => {
           setIsCollapsed(!isCollapsed);
           setSidebarIsCollapse(!isCollapsed);
@@ -46,7 +46,8 @@ const Navbar = () => {
           setIsCollapsed(!isCollapsed);
           setSidebarIsCollapse(!isCollapsed);
         }}
-      >
+      > */}
+      <div className="sidebar">
         <div className="sidebar-header">
           {/* Toggle Sidebar Button */}
           {/* <div className="toggle-btn" onClick={toggleSidebar}>
